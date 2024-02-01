@@ -1,0 +1,30 @@
+{
+  "id": "ros2-workspace",
+  "version": "1.0.0",
+  "name": "ROS 2 Workspace",
+  "description": "A template for a ROS 2 workspace.",
+  "documentationURL": "https://github.com/BrunoB81HK/ros2-workspace-devcontainer-template/tree/main/src/ros2-workspace",
+  "licenseURL": "https://github.com/BrunoB81HK/ros2-workspace-devcontainer-template/blob/main/LICENSE",
+  "options": {
+    "distro": {
+      "type": "string",
+      "description": "ROS 2 distribution.",
+      "enum": [
+        "humble",
+        "iron",
+        "rolling"
+      ],
+      "default": "humble"
+    },
+    "imageVariant": {
+      "type": "string",
+      "description": "Official ROS 2 Docker image variant.",
+      "proposals": [
+        "ros-base",
+        "ros-core",
+        "perception"
+      ],
+      "default": "ros-base"
+    }
+  }
+}
