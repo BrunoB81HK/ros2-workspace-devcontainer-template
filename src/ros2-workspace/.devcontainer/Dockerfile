@@ -1,5 +1,4 @@
-FROM ros:humble-ros-base 
-# ${templateOption:distro}-${templateOption:imageVariant}
+FROM ros:${templateOption:distro}-${templateOption:imageVariant}
 
 ARG USERNAME=rosdev
 ARG UID=1000
