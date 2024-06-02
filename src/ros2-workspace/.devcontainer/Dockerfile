@@ -32,7 +32,8 @@ RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
 RUN echo "if [ -f \"/home/$USERNAME/ros2_ws/install/setup.bash\" ]; then" >> /home/$USERNAME/.bashrc \
     && echo "    source /home/$USERNAME/ros2_ws/install/setup.bash" >> /home/$USERNAME/.bashrc \
     && echo "else" >> /home/$USERNAME/.bashrc \
-    && echo "    echo \"/home/$USERNAME/ros2_ws/install/setup.bash has not yet been created. Make sure to build your package(s).\"" >> /home/$USERNAME/.bashrc \
+    && echo "    echo \"/home/$USERNAME/ros2_ws/install/setup.bash has not yet been created.\"" >> /home/$USERNAME/.bashrc \
+    && echo "    echo \"Make sure to build your package(s).\"" >> /home/$USERNAME/.bashrc \
     && echo "fi" >> /home/$USERNAME/.bashrc
     
 # Setup entrypoint
