@@ -1,4 +1,5 @@
-FROM ros:${templateOption:distro}-${templateOption:imageVariant}
+FROM ros:humble-ros-base 
+# ${templateOption:distro}-${templateOption:imageVariant}
 
 ARG USERNAME=rosdev
 ARG UID=1000
@@ -26,7 +27,7 @@ WORKDIR /home/$USERNAME/ros2_ws
 
 # Setup bashrc
 ## Make ros2 public to the system via `source` command
-RUN echo 'source /opt/ros/'$ROS_DISTRO'/setup.bash' >> /home/$USERNAME/.bashrc
+RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /home/$USERNAME/.bashrc
 
 ## Check if own build have been made; if yes, source it 
 RUN echo "if [ -d \"/home/$USERNAME/ros2_ws/install\" ]; then" >> /home/$USERNAME/.bashrc \
@@ -34,7 +35,7 @@ RUN echo "if [ -d \"/home/$USERNAME/ros2_ws/install\" ]; then" >> /home/$USERNAM
     && echo "else" >> /home/$USERNAME/.bashrc \
     && echo "    echo \"/home/$USERNAME/ros2_ws/install has not yet been created.\"" >> /home/$USERNAME/.bashrc \
     && echo "fi" >> /home/$USERNAME/.bashrc
-
+    
 # Setup entrypoint
 COPY ./ros_entrypoint.sh /
 ENTRYPOINT ["/ros_entrypoint.sh"]
