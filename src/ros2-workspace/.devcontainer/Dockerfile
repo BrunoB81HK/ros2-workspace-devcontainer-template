@@ -29,14 +29,11 @@ WORKDIR /home/$USERNAME/ros2_ws
 RUN echo 'source /opt/ros/'$ROS_DISTRO'/setup.bash' >> /home/$USERNAME/.bashrc
 
 ## Check if own build have been made; if yes, source it 
-RUN cat << 'EOF' >> ~/.bashrc
-if [ -d "/home/'$USERNAME'/ros2_ws/install" ]; then
-    # Make own  public to the system via `source`
-    source /home/'$USERNAME'/ros2_ws/install/setup.bash
-else
-    echo "/home/$USERNAME/ros2_ws/install has not yet been created."
-fi
-EOF
+RUN echo "if [ -d \"/home/$USERNAME/ros2_ws/install\" ]; then" >> /home/$USERNAME/.bashrc \
+    && echo "    source /home/$USERNAME/ros2_ws/install/setup.bash" >> /home/$USERNAME/.bashrc \
+    && echo "else" >> /home/$USERNAME/.bashrc \
+    && echo "    echo \"/home/$USERNAME/ros2_ws/install has not yet been created.\"" >> /home/$USERNAME/.bashrc \
+    && echo "fi" >> /home/$USERNAME/.bashrc
 
 # Setup entrypoint
 COPY ./ros_entrypoint.sh /
